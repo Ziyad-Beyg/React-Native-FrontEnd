@@ -8,7 +8,7 @@ import axios from 'axios';
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState(''); 
 
   const login = async () => {
     if (email.trim() === '') {
@@ -37,7 +37,7 @@ const Login = ({navigation}) => {
       const {
         status,
         data: {user},
-      } = await axios.post('https://af31-111-88-112-171.ap.ngrok.io/login', {
+      } = await axios.post('https://react-native-back-end.vercel.app/login', {
         email: email.charAt(0).toLowerCase() + email.slice(1),
         password,
       });
@@ -52,7 +52,7 @@ const Login = ({navigation}) => {
         alert('Login Successfully');
       }
     } catch (err) {
-      alert(err.response.data, 'error');
+      alert(err.message, 'error');
     }
   };
   return (

@@ -26,7 +26,7 @@ const AdminHome = ({navigation}) => {
   const getAllUsers = async () => {
     try {
       const {data} = await axios.get(
-        `https://af31-111-88-112-171.ap.ngrok.io/allusers`,
+        `https://react-native-back-end.vercel.app/allusers`,
       );
       setUsers(data.filter(item => item.isadmin !== true));
       console.log(users);
@@ -44,19 +44,19 @@ const AdminHome = ({navigation}) => {
     console.log(`Edit user with id: ${user._id}`);
   };
 
-  const handleDelete = async userId => {
+  const handleDelete = async user => {
     try {
       const {data} = await axios.delete(
-        `https://af31-111-88-112-171.ap.ngrok.io/deleteuser/${userId}`,
+        `https://react-native-back-end.vercel.app/deleteuser/${user._id}`,
       );
-      alert(`User with id "${userId}" deleted`);
-      setUsers(users.filter(item => item._id !== userId));
+      alert(`User "${user.username}" with id "${user._id}" deleted`);
+      setUsers(users.filter(item => item._id !== user._id));
       console.log(data);
     } catch (e) {
       alert(e.message);
     }
     // Logic for deleting user with the given userId
-    console.log(`Delete user with id: ${userId}`);
+    console.log(`Delete user with id: ${user._id}`);
   };
 
   const save = async () => {
@@ -79,13 +79,13 @@ const AdminHome = ({navigation}) => {
     }
         try {
           const { data } = await axios.put(
-            `https://af31-111-88-112-171.ap.ngrok.io/edituser/${edituserId}`,
+            `https://react-native-back-end.vercel.app/edituser/${edituserId}`,
             {
                 email: edituserEmail.charAt(0).toLowerCase() + edituserEmail.slice(1),
                 username: edituserName
             }
           );
-          alert(`User with id "${edituserId}" edited`);
+          alert(`User "${edituserName}" with id "${edituserId}" edited`);
           setUsers(
             users.map((item) => {
               return item._id == edituserId ? data : item;

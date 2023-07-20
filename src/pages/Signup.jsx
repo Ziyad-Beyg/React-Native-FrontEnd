@@ -45,21 +45,19 @@ const Signup = ({navigation}) => {
     }
 
     try {
-      const {status} = await axios.post(
-        `https://af31-111-88-112-171.ap.ngrok.io/register`,
-        {
-          username,
-          email: email.charAt(0).toLowerCase() + email.slice(1),
-          password,
-          isadmin,
-        },
-      );
+      const {status} = await axios.post(`https://react-native-back-end.vercel.app/register`, {
+        username,
+        email: email.charAt(0).toLowerCase() + email.slice(1),
+        password,
+        isadmin,
+      });
       if (status === 201) {
-        alert("User Created Successfully")
+        alert('User Created Successfully');
         navigation.replace('Login');
       }
     } catch (err) {
-      alert( err.message);
+      alert(err.message);
+      console.log(err.message);
     }
   };
 

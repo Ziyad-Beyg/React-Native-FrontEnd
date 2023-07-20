@@ -28,7 +28,7 @@ const UserCard = ({users, onEdit, onDelete}) => {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.deleteButton}
-              onPress={() => onDelete(user._id)}>
+              onPress={() => onDelete(user)}>
               <Text style={styles.buttonText}>Delete</Text>
             </TouchableOpacity>
           </View>
